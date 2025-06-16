@@ -4,4 +4,7 @@
 
 - Worked on my project proposal
 
-## Week 4 Updates
+## Week 4 Updates 6/15/2025
+
+- Focused on getting my personal website up to date
+
