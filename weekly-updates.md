@@ -33,5 +33,12 @@
 
 ## Week 7 Updates 7/6/2025
 
-- 
+- What did you do last week?
+  - Started watching some videos on API and began reading a text book "Coding Clean, Reliable, and Safe REST APIs" to familiarize myself with HTTP and the types of requests I'll be testing. I'm not fully through chapter 1, but I'm just over halfway.
+- What do you plan to do this week?
+  - Work through chapter 1, and skim chapter 2 and 3 of the book.
+- Are there any impediments in your way?
+  - Nothing this next week!
+- Reflection on the process you used last week, how can you make the process work better?
+  - No holiday's next week so I should have more time to work on the project.
 
