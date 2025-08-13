@@ -2,7 +2,10 @@ import { addNewContact,
         getContacts, 
         getContactWithID, 
         updateContact, 
-        deleteContact } from "../controllers/crmController";
+        deleteContact,
+        // KPA routes
+        getKPAUserInfo,
+        syncKPAUserToContact, } from "../controllers/crmController";
 
 const routes = (app) => {
     app.route('/contact') //this allows the get, put, and delete commands
@@ -21,15 +24,18 @@ const routes = (app) => {
     .post(addNewContact);     
 
     app.route('/contact/:contactId')
+        // get a specific contact
+        .get(getContactWithID) 
 
-    // get a specific contact
-    .get(getContactWithID) 
+        // update a contact
+        .put(updateContact)
 
-    // update a contact
-    .put(updateContact)
+        // delete a contact
+        .delete(deleteContact)
 
-    // delete a contact
-    .delete(deleteContact)
+    app.route('/kpa/user/:userId')
+        .get(getKPAUserInfo)
+        .post(syncKPAUserToContact)
 
 }
 
