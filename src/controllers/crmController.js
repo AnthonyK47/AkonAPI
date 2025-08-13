@@ -30,3 +30,22 @@ export const getContactWithID = async (req, res) => {
         res.send(err)
     }
 };
+
+export const updateContact = async (req, res) => {
+    try {
+        const contacts = await Contact.findOneAndUpdate({ _id: req.params.contactId }, req.body, { new: true });
+        res.json(contacts);
+    } catch (err) {
+        res.send(err)
+    }
+    
+};
+
+export const deleteContact = async (req, res) => {
+    try {
+        const contacts = await Contact.findByIdAndDelete(req.params.contactId);
+        res.json({ message: 'Successfully deleted contact' });
+    } catch (err) {
+        res.send(err)
+    }
+};
