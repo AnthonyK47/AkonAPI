@@ -2,9 +2,11 @@ import mongoose from 'mongoose';
 import { ContactSchema } from '../models/crmModel';
 import KPAService from '../services/kpaService.js';
 
+console.log('✓ KPAService imported successfully');
+
 const Contact = mongoose.model('Contact', ContactSchema);
 
-const kpaService = new KPAService(process.env.KPA_TOKEN || 'YOUR_TOKEN_HERE');
+const kpaService = new KPAService('pGaNdfCsNmulM8yyHpse644JhXaA1m6OA');
 
 
 export const addNewContact = async (req, res) => {
@@ -56,12 +58,16 @@ export const deleteContact = async (req, res) => {
 
 // Get KPA User info from Flex
 export const getKPAUserInfo = async (req, res) => {
+    console.log('🔥 Function called - starting debug');
+    console.log('Request params:', req.params);
+    
     try {
         const { userId } = req.params;
-        const userInfo = await kpaService.getUserInfo;
-        res/json(userInfo);
+        console.log('🔥 About to call KPA service');
+        const userInfo = await kpaService.getUserInfo(userId);
+        res.json(userInfo);
     } catch (err) {
-        console.error('Error fetching KPA user info:', err.message);
+        console.error('🔥 Error caught:', err.message);
         res.status(500).json({
             error: 'Failed to fetch user info from KPA',
             details: err.message
@@ -69,9 +75,9 @@ export const getKPAUserInfo = async (req, res) => {
     }
 };
 
-export const syncKPAUserToContact = async (req, rest) => {
+export const syncKPAUserToContact = async (req, res) => {
     try {
-        const { userID } = req.params;
+        const { userId } = req.params;
 
         // get user data from Flex
         const kpaResponse = await kpaService.getUserInfo(userId);
@@ -90,9 +96,9 @@ export const syncKPAUserToContact = async (req, rest) => {
         
         let contact;
         if (existingContact) {
-            // Update existing contact (match by email or whatever field you choose)
+            // Update existing contact by employeeNumber
             contact = await Contact.findOneAndUpdate(
-                { email: kpaUser.email }, // or whatever matching field you use
+                { employeeNumber: kpaUser.employeeNumber },
                 contactData, 
                 { new: true }
             );
