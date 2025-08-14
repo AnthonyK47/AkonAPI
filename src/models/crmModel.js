@@ -15,11 +15,8 @@ export const ContactSchema = new Schema({
     username: {
         type: String
     },
-    company: {
+    employeeNumber: {
         type: String
-    },
-    phone: {
-        type: Number
     },
     created_date: {
         type: Date,
